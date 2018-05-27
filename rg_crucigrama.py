@@ -20,6 +20,14 @@ def imprimir_filas_crucigrama(contador,crucigrama,extremo,iterar,validar,generar
 		print(" {}".format("".join(repr_crucigrama)))
 		del repr_crucigrama
 		contador = iterar(contador)
+def imprimir_indices_verticales(crucigrama):
+	"""Recibe un crucigrama e imprime los indices de las verticales que cortan a la horizontal."""
+	repr_crucigrama = inicializar_fila(" ",len(crucigrama["H"][0]))
+
+	for item in crucigrama.items():
+		if(item[0] !="H"):
+			repr_crucigrama[item[1][0]] = str(item[1][0])#item[1][0] = posicion letra de la vertical en horizontal
+	print(" {}".format("".join(repr_crucigrama)))
 
 def imprimir_representacion_crucigrama(crucigrama,maximo,minimo,imprimir_solucion):
 	"""Recibe un crucigrama(diccionario),maximo(int),minimo(int) e imprimir_solucion. 
@@ -53,12 +61,12 @@ def imprimir_representacion_crucigrama(crucigrama,maximo,minimo,imprimir_solucio
 		elif(minimo_vertical < len(palabra)):
 			fila[item[1][0]] = "."
 		return fila
-
+	imprimir_indices_verticales(crucigrama)
 	imprimir_filas_crucigrama(maximo,crucigrama,maximo,lambda x: x - 1,lambda x,y:x,__generar_filas_crucigrama_superior,imprimir_solucion)
 	if(imprimir_solucion):
-		print("{} {}".format("",crucigrama["H"][0])) #crucigrama["H"]-Horizontal del crucigrama"
+		print("{}{}".format("H",crucigrama["H"][0])) #crucigrama["H"]-Horizontal del crucigrama"
 	else:
 		sl_horizontal = "".join(inicializar_fila(".",len(crucigrama["H"][0])))
-		print("{} {}".format("",sl_horizontal))
+		print("{} {}".format("H",sl_horizontal))
 	imprimir_filas_crucigrama(1,crucigrama,minimo,lambda x:x + 1,lambda x,y: x <= y,__generar_filas_crucigrama_inferior,imprimir_solucion)
 	
