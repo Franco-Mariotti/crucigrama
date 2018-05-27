@@ -69,8 +69,8 @@ def obtener_verticales_crucigrama(palabras,tamanio_archivo,crucigrama):
 	horizontal = crucigrama["H"][0]
 	while(i<len(horizontal)):
 		letras = horizontal[i:i+2]
-		linea = leer_linea_archivo_al_azar(palabras,tamanio_archivo,(lambda x: x not in crucigrama.keys()))
-		coincidencia = buscar_coincidencia_en_vertical(letras,linea[0])
+		linea = leer_linea_archivo_al_azar(palabras,tamanio_archivo,(lambda x: x not in crucigrama.keys())) #linea = (palabra,definicion)
+		coincidencia = buscar_coincidencia_en_vertical(letras,linea[0])#linea[0] = palabra
 		while(coincidencia<0):
 			linea = leer_palabra_archivo_secuencial(palabras,tamanio_archivo)
 			coincidencia = buscar_coincidencia_en_vertical(letras,linea[0])
@@ -79,7 +79,7 @@ def obtener_verticales_crucigrama(palabras,tamanio_archivo,crucigrama):
 		maximo = obtener_maximo_n1_n2(maximo,cantidad_filas_arriba)
 		cantidad_filas_abajo = len(linea[0]) - cantidad_filas_arriba -1
 		minimo = obtener_maximo_n1_n2(cantidad_filas_abajo,minimo)
-		crucigrama[linea[0]] = (i,cantidad_filas_arriba,linea[1])
+		crucigrama[linea[0]] = (i,cantidad_filas_arriba,linea[1])#linea[1] = definicion
 		i+=2	
 	return maximo,minimo
 

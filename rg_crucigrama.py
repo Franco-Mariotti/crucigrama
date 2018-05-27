@@ -49,7 +49,7 @@ def imprimir_representacion_crucigrama(crucigrama,maximo,minimo,imprimir_solucio
 		fila = repr_crucigrama
 		minimo_vertical = item[1][1] + contador
 		if(minimo_vertical < len(palabra) and imprimir_solucion):
-			fila[item[1][0]] = palabra[minimo_vertical]
+			fila[item[1][0]] = palabra[minimo_vertical] #item[1][0] = posicion letra de la vertical en horizontal
 		elif(minimo_vertical < len(palabra)):
 			fila[item[1][0]] = "."
 		return fila
